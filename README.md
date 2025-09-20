@@ -1,8 +1,15 @@
 # VALERIA-S-REGISTRATION-FORM
 This is a **responsive registration form** created using **javascript, css and HTML**. It works on various devices and includes **real-time validation** for all inputs.
-
+___
 ## **Features**
--Name,email,password, confirm password fields,mobile number inputs,language and gender selection,attachment upload, terms of use checkbox, register now button that validates all entries before submission and full responsive layout for both desktop and mobile devices.
+-Name,email,password, confirm password fields
+-Mobile number inputs
+-Language selection 
+-Gender selection
+-Attachment upload
+-Terms of use checkbox
+-Register now button that validates all entries before submission
+-A full responsive layout for both desktop and mobile devices.
 ___
 ## **Screenshot**
 ![Form screenshot](https://github.com/valeria650/VALERIA-S-REGISTRATION-FORM/blob/main/valeria's%20registration%20form.png
