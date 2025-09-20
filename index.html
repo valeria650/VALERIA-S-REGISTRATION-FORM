@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ValeriaRegistrationForm</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 700px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    form input, form select, form button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .gender {
+      display:flex;
+      gap: 0px;
+      margin-top: 5px;
+    }
+
+    button {
+      margin-top: 15px;
+      background: #28a745;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #218838;
+    }
+
+    .error {
+      color: red;
+      font-size: 12px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Registration Form</h2>
+    <form id="registrationForm" enctype="multipart/form-data">
+      
+      <!-- Name -->
+      <label for="name">Name</label>
+      <input type="text" id="name" placeholder="Enter your name">
+      <small class="error" id="nameError"></small>
+
+      <!-- Email -->
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your email">
+      <small class="error" id="emailError"></small>
+
+      <!-- Password -->
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password">
+      <small class="error" id="passwordError"></small>
+
+      <!-- Confirm Password -->
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" placeholder="Confirm your password">
+      <small class="error" id="confirmPasswordError"></small>
+
+      <!-- Mobile Number -->
+      <label for="mobile">Mobile Number</label>
+      <input type="tel" id="mobile" placeholder="Enter your mobile number">
+      <small class="error" id="mobileError"></small>
+
+      <!-- Language -->
+      <label for="language">Language</label>
+      <select id="language">
+        <option value="">Select language</option>
+        <option value="english">English</option>
+        <option value="luganda">Luganda</option>
+        <option value="swahili">Swahili</option>
+      </select>
+      <small class="error" id="languageError"></small>
+
+      <!-- Attachment -->
+      <label for="attachment">Attachment</label>
+      <input type="file" id="attachment" accept=".jpg,.png,.pdf,.zip">
+      <small class="error" id="attachmentError"></small>
+
+      <!-- Gender -->
+      <label>Gender</label>
+      <div class="gender">
+        <input type="radio" name="gender" value="male"> Male
+        <input type="radio" name="gender" value="female"> Female
+      </div>
+      <small class="error" id="genderError"></small>
+
+      <!-- Terms -->
+      <label>
+        <input type="checkbox" id="terms"> I accept the Terms of Use
+      </label>
+      <small class="error" id="termsError"></small>
+
+      <!-- Submit Button -->
+      <button type="submit">Register Now</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("registrationForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      let valid = true;
+
+      // Name
+      const name = document.getElementById("name").value.trim();
+      if (name === "") {
+        showError("nameError", "Please enter your name");
+        valid = false;
+      } else hideError("nameError");
+
+      // Email
+      const email = document.getElementById("email").value.trim();
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!email.match(emailPattern)) {
+        showError("emailError", "Please enter a valid email");
+        valid = false;
+      } else hideError("emailError");
+
+      // Password
+      const password = document.getElementById("password").value.trim();
+      if (password.length < 6) {
+        showError("passwordError", "Password must be at least 6 characters");
+        valid = false;
+      } else hideError("passwordError");
+
+      // Confirm Password
+      const confirmPassword = document.getElementById("confirmPassword").value.trim();
+      if (confirmPassword !== password) {
+        showError("confirmPasswordError", "Passwords do not match");
+        valid = false;
+      } else hideError("confirmPasswordError");
+
+      // Mobile
+      const mobile = document.getElementById("mobile").value.trim();
+      if (mobile === "" || isNaN(mobile)) {
+        showError("mobileError", "Please enter a valid mobile number");
+        valid = false;
+      } else hideError("mobileError");
+
+      // Language
+      const language = document.getElementById("language").value;
+      if (language === "") {
+        showError("languageError", "Please select a language");
+        valid = false;
+      } else hideError("languageError");
+
+      // Attachment
+      const attachment = document.getElementById("attachment").value;
+      if (attachment === "") {
+        showError("attachmentError", "Please upload a file");
+        valid = false;
+      } else hideError("attachmentError");
+
+      // Gender
+      const gender = document.querySelector('input[name="gender"]:checked');
+      if (!gender) {
+        showError("genderError", "Please select your gender");
+        valid = false;
+      } else hideError("genderError");
+
+      // Terms
+      const terms = document.getElementById("terms").checked;
+      if (!terms) {
+        showError("termsError", "You must accept the terms");
+        valid = false;
+      } else hideError("termsError");
+
+      if (valid) {
+        alert("Registration successful!");
+        this.reset();
+      }
+    });
+
+    function showError(id, message) {
+      const element = document.getElementById(id);
+      element.style.display = "block";
+      element.textContent = message;
+    }
+
+    function hideError(id) {
+      const element = document.getElementById(id);
+      element.style.display = "none";
+    }
+  </script>
+</body>
+</html>
