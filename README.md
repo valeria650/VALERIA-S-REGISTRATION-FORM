@@ -27,3 +27,4 @@ ___
 ## **Author**
 **Nakato J. Valeria Nassaka**
 Computer engineering student 
+nakatovaleria@gmail.com
