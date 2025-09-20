@@ -5,7 +5,7 @@ This is a **responsive registration form** created using **javascript, css and H
 -Name,email,password, confirm password fields,mobile number inputs,language and gender selection,attachment upload, terms of use checkbox, register now button that validates all entries before submission and full responsive layout for both desktop and mobile devices.
 ___
 ## **Screenshot**
-![Form screenshot](<img width="1112" height="739" alt="valeria's registration form" src="https://github.com/user-attachments/assets/07def155-3a0a-4795-9467-ec7f26813348" />
+![Form screenshot](https://github.com/valeria650/VALERIA-S-REGISTRATION-FORM/blob/main/valeria's%20registration%20form.png
 )
 ___
 ## **Usage**
